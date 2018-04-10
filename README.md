@@ -1,0 +1,2 @@
+# SzuroMemo
+Szűrésvizsgálat emlékeztető
