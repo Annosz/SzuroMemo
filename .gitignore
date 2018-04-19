@@ -21,6 +21,11 @@
 UpgradeLog.XML
 _UpgradeReport_Files/
 
+###################################################
+# Visual Studio 2015/2017 cache/options directory #
+###################################################
+.vs/
+
 ###############
 # Directories #
 ###############
