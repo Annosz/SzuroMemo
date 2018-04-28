@@ -28,7 +28,12 @@ namespace SzuroMemo.Web
                 o => o.UseSqlServer(Configuration.GetConnectionString(nameof(SzuroMemoDbContext))));
             services.AddTransient<ScreeningDataSeeder>();
             services.AddTransient<SzuroMemoSeedData>();
-            services.AddMvc();
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AddPageRoute("/Index", "Fooldal");
+                    options.Conventions.AddPageRoute("/Screenings", "Ismertetok");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,6 +9,8 @@ namespace SzuroMemo.Dal.Extensions
 {
     public static class WebHostDataExtensions
     {
+        #region Extension methods
+
         public static IWebHost MigrateDatabase<TContext>(this IWebHost host)
             where TContext : DbContext
                 => Scoped<SzuroMemoDbContext>(host, (s, l) => s.GetRequiredService<TContext>().Database.Migrate(), "Migrating database");
@@ -16,7 +18,16 @@ namespace SzuroMemo.Dal.Extensions
         public static IWebHost Seed<TSeeder, TContext, TData>(this IWebHost host)
             where TSeeder : IDataSeeder<TContext, TData>
             where TContext : DbContext
-                => Scoped<TSeeder>(                    host,                    (s, l) => l.LogInformation(                        $"Seeded {s.GetRequiredService<TSeeder>().SeedData(s.GetRequiredService<TContext>(), () => s.GetRequiredService<TData>())} entities."                    ),                    "Seed database");
+                => Scoped<TSeeder>(
+                    host,
+                    (s, l) => l.LogInformation(
+                        $"Seeded {s.GetRequiredService<TSeeder>().SeedData(s.GetRequiredService<TContext>(), () => s.GetRequiredService<TData>())} entities."
+                    ),
+                    "Seed database");
+
+        #endregion
+
+        #region Scoping
 
         private static IWebHost Scoped<TLog>(this IWebHost host, Action<IServiceProvider, ILogger<TLog>> action, string title)
         {
@@ -35,5 +46,7 @@ namespace SzuroMemo.Dal.Extensions
             }
             return host;
         }
+
+        #endregion
     }
 }

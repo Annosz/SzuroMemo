@@ -7,4 +7,5 @@ namespace SzuroMemo.Dal.Seed
     {
         int SeedData(TDbContext context, Func<TData> dataAccessor);
     }
-}
+}
+
