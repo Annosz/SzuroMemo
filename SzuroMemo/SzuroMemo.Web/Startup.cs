@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SzuroMemo.Dal;
+using SzuroMemo.Dal.Seed;
 
 namespace SzuroMemo.Web
 {
@@ -21,6 +24,10 @@ namespace SzuroMemo.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SzuroMemoDbContext>(
+                o => o.UseSqlServer(Configuration.GetConnectionString(nameof(SzuroMemoDbContext))));
+            services.AddTransient<ScreeningDataSeeder>();
+            services.AddTransient<SzuroMemoSeedData>();
             services.AddMvc();
         }
 

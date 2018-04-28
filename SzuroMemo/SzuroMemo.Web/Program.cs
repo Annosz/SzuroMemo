@@ -7,6 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using SzuroMemo.Dal;
+using SzuroMemo.Dal.Extensions;
+using SzuroMemo.Dal.Seed;
 
 namespace SzuroMemo.Web
 {
@@ -14,7 +17,10 @@ namespace SzuroMemo.Web
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            BuildWebHost(args)
+                .MigrateDatabase<SzuroMemoDbContext>()
+                .Seed<ScreeningDataSeeder, SzuroMemoDbContext, SzuroMemoSeedData>()
+                .Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
