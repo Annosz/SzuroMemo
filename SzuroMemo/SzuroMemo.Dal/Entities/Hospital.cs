@@ -4,14 +4,13 @@ using System.Text;
 
 namespace SzuroMemo.Dal.Entities
 {
-    public class Screening
+    public class Hospital
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool ReferralNeeded { get; set; }
-        public string Description { get; set; }
+        public Address Address { get; set; }
+        public string PictureUrl { get; set; }
 
         public ICollection<Occasion> Occasions { get; set; }
-        public ICollection<LastScreening> LastScreenings { get; set; }
     }
 }
