@@ -7,34 +7,26 @@ namespace SzuroMemo.Dal.Seed
     {
         public int SeedData(SzuroMemoDbContext context, Func<SzuroMemoSeedData> dataAccessor)
         {
-            if (!context.Screenings.Any())
+            if (!context.Screening.Any())
             {
-                context.AddRange(dataAccessor().Screenings);
+                context.AddRange(dataAccessor().Screenings.Where(s => !dataAccessor().Occasions.Select(o => o.Screening).Contains(s.Name)));
             }
 
             if (!context.Hospital.Any())
             {
-                context.AddRange(dataAccessor().Hospitals);
+                context.AddRange(dataAccessor().Hospitals.Where(s => !dataAccessor().Occasions.Select(o => o.Hospital).Contains(s.Name)));
             }
 
-            if (!context.User.Any())
+            if (!context.Occasion.Any())
             {
-                context.AddRange(dataAccessor().Users);
-            }
-
-            if (!context.MedicalRecord.Any())
-            {
-                context.AddRange(dataAccessor().MedicalRecords);
-                for (int i = 0; i < context.MedicalRecord.Count(); i++)
+                context.Occasion.AddRange(dataAccessor().Occasions.Select(o => new Entities.Occasion
                 {
-                    context.MedicalRecord.ElementAt(i).User = context.User.ElementAt(i);
-                    context.User.ElementAt(i).MedicalRecord = context.MedicalRecord.ElementAt(i);
-                }
-            }
-
-            if (!context.LastScreening.Any())
-            {
-                context.AddRange(dataAccessor().LastScreenings);
+                    StartTime = o.StartTime,
+                    EndTime = o.EndTime,
+                    Description = o.Description,
+                    Screening = dataAccessor().Screenings.First(s => s.Name == o.Screening),
+                    Hospital = dataAccessor().Hospitals.First(h => h.Name == o.Hospital)
+                }));
             }
 
             

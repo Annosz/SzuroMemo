@@ -24,7 +24,7 @@ namespace SzuroMemo.Dal
         public DbSet<MedicalRecord> MedicalRecord { get; set; }
         public DbSet<Occasion> Occasion { get; set; }
         public DbSet<Registration> Registration { get; set; }
-        public DbSet<Screening> Screenings { get; set; }
+        public DbSet<Screening> Screening { get; set; }
         public DbSet<User> User { get; set; }
 
         #endregion

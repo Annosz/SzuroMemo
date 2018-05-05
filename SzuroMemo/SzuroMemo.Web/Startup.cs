@@ -33,6 +33,7 @@ namespace SzuroMemo.Web
                 {
                     options.Conventions.AddPageRoute("/Index", "Fooldal");
                     options.Conventions.AddPageRoute("/Screenings", "Ismertetok");
+                    options.Conventions.AddPageRoute("/Occasions", "Aktualis_szuresek");
                 });
         }
 

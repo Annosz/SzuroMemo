@@ -11,7 +11,7 @@ using SzuroMemo.Dal;
 namespace SzuroMemo.Dal.Migrations
 {
     [DbContext(typeof(SzuroMemoDbContext))]
-    [Migration("20180502112950_Initial")]
+    [Migration("20180505130449_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,7 +134,7 @@ namespace SzuroMemo.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Screenings");
+                    b.ToTable("Screening");
                 });
 
             modelBuilder.Entity("SzuroMemo.Dal.Entities.User", b =>

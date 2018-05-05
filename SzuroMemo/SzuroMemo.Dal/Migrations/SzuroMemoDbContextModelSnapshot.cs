@@ -133,7 +133,7 @@ namespace SzuroMemo.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Screenings");
+                    b.ToTable("Screening");
                 });
 
             modelBuilder.Entity("SzuroMemo.Dal.Entities.User", b =>

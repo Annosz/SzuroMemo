@@ -1,0 +1,26 @@
+﻿@page
+@model SzuroMemo.Web.Pages.OccasionsModel
+@{
+    ViewData["Title"] = "Aktuális szűrések";
+}
+
+<div class="row">
+    @foreach (var occasion in Model.Occasions)
+    {
+        <div class="col-md-6 panel panel-default">
+            <h2 class="lead panel-heading">
+                <a asp-page="Occasion" asp-route-id="@occasion.Id">@occasion.Screening.Name</a>
+            </h2>
+            <div class="panel-body">
+                <div class="col-xs-3">
+                    <img src="@occasion.Hospital.PictureUrl" class="img-responsive" alt="@occasion.Hospital.Name" title="@occasion.Hospital.Name" />
+                </div>
+                <div class="col-xs-9">
+                    @occasion.Hospital.Name
+                    <br /> <p class="lead">@occasion.Hospital.Address</p>
+                    <hr /> <p class="small">@occasion.Description</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

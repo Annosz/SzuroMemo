@@ -27,7 +27,7 @@ namespace SzuroMemo.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Screenings",
+                name: "Screening",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -38,7 +38,7 @@ namespace SzuroMemo.Dal.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Screenings", x => x.Id);
+                    table.PrimaryKey("PK_Screening", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,9 +79,9 @@ namespace SzuroMemo.Dal.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Occasion_Screenings_ScreeningId",
+                        name: "FK_Occasion_Screening_ScreeningId",
                         column: x => x.ScreeningId,
-                        principalTable: "Screenings",
+                        principalTable: "Screening",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -159,9 +159,9 @@ namespace SzuroMemo.Dal.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LastScreening_Screenings_ScreeningId",
+                        name: "FK_LastScreening_Screening_ScreeningId",
                         column: x => x.ScreeningId,
-                        principalTable: "Screenings",
+                        principalTable: "Screening",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -208,7 +208,7 @@ namespace SzuroMemo.Dal.Migrations
                 name: "Hospital");
 
             migrationBuilder.DropTable(
-                name: "Screenings");
+                name: "Screening");
         }
     }
 }

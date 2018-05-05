@@ -9,13 +9,13 @@ using SzuroMemo.Dal.Entities;
 
 namespace SzuroMemo.Web.Pages
 {
-    public class ScreeningsModel : PageModel
+    public class OccasionsModel : PageModel
     {
-        public IEnumerable<Screening> Screenings { get; private set; }
+        public IEnumerable<Occasion> Occasions { get; private set; }
 
         public void OnGet([FromServices]SzuroMemoDbContext ctx)
         {
-            Screenings = ctx.Screening;
+            Occasions = ctx.Occasion;
         }
     }
 }
