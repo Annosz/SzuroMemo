@@ -11,7 +11,7 @@ using SzuroMemo.Dal;
 namespace SzuroMemo.Dal.Migrations
 {
     [DbContext(typeof(SzuroMemoDbContext))]
-    [Migration("20180502081052_Initial")]
+    [Migration("20180502112950_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,9 +84,13 @@ namespace SzuroMemo.Dal.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<DateTime>("EndTime");
+
                     b.Property<int>("HospitalId");
 
                     b.Property<int>("ScreeningId");
+
+                    b.Property<DateTime>("StartTime");
 
                     b.HasKey("Id");
 
@@ -161,7 +165,7 @@ namespace SzuroMemo.Dal.Migrations
 
                             b1.Property<string>("StreetAddress");
 
-                            b1.Property<string>("ZipCode");
+                            b1.Property<int>("ZipCode");
 
                             b1.ToTable("Hospital");
 

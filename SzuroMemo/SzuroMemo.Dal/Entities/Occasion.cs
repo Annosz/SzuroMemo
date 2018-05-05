@@ -7,6 +7,8 @@ namespace SzuroMemo.Dal.Entities
     public class Occasion
     {
         public int Id { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public string Description { get; set; }
 
         public Screening Screening { get; set; }

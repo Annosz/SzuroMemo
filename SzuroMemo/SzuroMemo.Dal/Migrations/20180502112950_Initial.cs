@@ -19,7 +19,7 @@ namespace SzuroMemo.Dal.Migrations
                     PictureUrl = table.Column<string>(nullable: true),
                     Address_Settlement = table.Column<string>(nullable: true),
                     Address_StreetAddress = table.Column<string>(nullable: true),
-                    Address_ZipCode = table.Column<string>(nullable: true)
+                    Address_ZipCode = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,8 +64,10 @@ namespace SzuroMemo.Dal.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
+                    EndTime = table.Column<DateTime>(nullable: false),
                     HospitalId = table.Column<int>(nullable: false),
-                    ScreeningId = table.Column<int>(nullable: false)
+                    ScreeningId = table.Column<int>(nullable: false),
+                    StartTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
