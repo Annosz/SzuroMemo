@@ -4,5 +4,33 @@
     ViewData["Title"] = "Főoldal";
 }
 <div
-     <h1 class="h1">Helló!</h1>
+    <div class="row">
+        <div class="col-md-9">
+            <h1 class="h1">Szűrővizsgálat emlékeztető</h1>
+            Magyarországon egyáltalán nincsen hagyománya a szűrővizsgálatokon való részvételnek: a legtöbben úgy vannak vele, hogy „majd elmegyek orvoshoz, ha fáj”. Más mentalitással a legtöbb betegség jóval korábban felismerhető és kezelhető lenne.
+            <br />
+            <br />A SzűrőMemo webalkalmazás célja, hogy segítse az embereket annak eldöntésében, hogy mikor és milyen szűrővizsgálatra van szükségük, és lehetővé tegye, hogy gyorsan és egyszerűen jelentkezzenek ezekre.
+
+            <h2>Tervezett funkciók és szolgáltatások</h2>
+            <ul>
+                <li>A felhasználó minden egészségügyi adatának megadása</li>
+                <li>A korábbi szűrések és az egészségügyi adatok alapján ajánlott menetrend készítése a szűréseken való részvételre</li>
+                <li>E-mail értesítés, ha esedékessé válik egy ellenőrzés</li>
+                <li>Böngészés a meghirdetett szűrővizsgálatok közt és jelentkezés</li>
+                <li>Arra jogosult felhasználóknak szűrővizsgálatok meghirdetésének, módosításának, törlésének lehetősége</li>
+            </ul>
+            <h2>Extrák</h2>
+            <ul>
+                <li>Bejelentkezés Google accounttal</li>
+                <li>Az elérhető szűrővizsgálatok publikálása OData-val</li>
+                <li>Facebook szolgáltatással való integrálás (szűrőalkalmak megosztása)</li>
+                <li>Feliratkozás és emlékeztetők küldése a szűrőalkalmakról</li>
+                <li>Keresés / szűrés a szűrőalkalmak közt</li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <vc:screening-list></vc:screening-list>
+        </div>
+    </div>
+
 </div>

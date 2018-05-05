@@ -17,7 +17,7 @@ namespace SzuroMemo.Web.Pages
 
         public void OnGet([FromServices]ScreeningService screeningService)
         {
-            Screenings = screeningService.GetScreening();
+            Screenings = screeningService.GetScreenings();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SzuroMemo.Dal.Services
 
         public SzuroMemoDbContext DbContext { get; }
 
-        public IEnumerable<ScreeningDto> GetScreening() => DbContext.Screening
+        public IEnumerable<ScreeningDto> GetScreenings() => DbContext.Screening
             .Include(s => s.Occasions)
             .Select(s => new ScreeningDto
             {

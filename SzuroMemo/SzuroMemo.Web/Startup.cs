@@ -32,6 +32,7 @@ namespace SzuroMemo.Web
 
             services.AddScoped<OccasionService>();
             services.AddScoped<ScreeningService>();
+            services.AddScoped<ScreeningHeaderService>();
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>

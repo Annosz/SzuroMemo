@@ -9,13 +9,13 @@
     {
         <div class="col panel panel-default">
             <h2 class="lead panel-heading">
-                <a asp-page="Screening" asp-route-id="@screening.Id">@screening.Name</a>
+                <a asp-page="Occasions" asp-route-screeningId="@screening.Id">@screening.Name</a>
             </h2>
             <div class="panel-body">
                 <p class="text-info">Beutaló @(screening.ReferralNeeded ? "szükséges" : "nem szükséges")</p>
                 <hr />
                 <p class="small">@screening.Description</p>
-                <p class="text-right"><a asp-page="Screening" asp-route-id="@screening.Id">@screening.OccasionNum helyen akár rögtön jelentkezhetsz is szűrésre</a></p>
+                <p class="text-right"><a asp-page="Occasions" asp-route-id="@screening.Id">@screening.OccasionNum helyen akár rögtön jelentkezhetsz is szűrésre</a></p>
             </div>
         </div>
     }

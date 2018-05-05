@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SzuroMemo.Dal.Dtos.ScreeningHeaderDto>
+
+<br />
+
+<div class="screening-headers">
+
+    <div class="text-primary list-header">
+        Szűrővizsgálatok listája
+    </div>
+    @foreach (var screening in Model)
+    {
+        <div class="list-element">
+            <a asp-page="Occasions" asp-route-screeningId="@screening.Id">@screening.Name</a>
+        </div>
+    }
+</div>

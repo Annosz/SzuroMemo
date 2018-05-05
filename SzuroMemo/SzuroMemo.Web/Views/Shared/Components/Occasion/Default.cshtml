@@ -1,0 +1,24 @@
+﻿@model SzuroMemo.Dal.Dtos.OccasionDto
+
+<div class="panel panel-default occasion">
+    <h2 class="lead panel-heading">
+        <a asp-page="Occasion" asp-route-id="@Model.Id">@Model.Screening</a>
+    </h2>
+    <div class="panel-body">
+        <div class="col-xs-5">
+            <img src="@Model.PictureUrl" class="img-responsive" alt="@Model.Hospital" title="@Model.Hospital" />
+        </div>
+        <div class="col-xs-7">
+            <p class="name">@Model.Hospital</p>
+            <p class="text-primary">Kezdete: @Model.StartTime</p>
+            <p class="text-primary">Vége: @Model.EndTime</p>
+        </div>
+    </div>
+    <div class="content">
+        <hr />
+        <p class="address">@Model.Address.ZipCode @Model.Address.Settlement, @Model.Address.StreetAddress</p>
+        <p>Beutaló @(Model.ReferralNeeded ? "szükséges" : "nem szükséges")</p>
+        <p class="small">@Model.Description</p>
+        <p class="text-right">@Model.RegistrationNum ember már jelentkezett</p>
+    </div>
+</div>

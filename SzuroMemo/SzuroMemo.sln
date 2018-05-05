@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SzuroMemo.Web", "SzuroMemo.Web\SzuroMemo.Web.csproj", "{9C18B43D-6D56-4781-939E-3069A8DA2094}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzuroMemo.Dal", "SzuroMemo.Dal\SzuroMemo.Dal.csproj", "{F81B1AB3-09B2-4964-AAC9-19633A324B33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SzuroMemo.Dal", "SzuroMemo.Dal\SzuroMemo.Dal.csproj", "{F81B1AB3-09B2-4964-AAC9-19633A324B33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
