@@ -2,25 +2,37 @@
 @model SzuroMemo.Web.Pages.OccasionsModel
 @{
     ViewData["Title"] = "Aktuális szűrések";
+    var i = 0;
 }
 
 <div class="row">
     @foreach (var occasion in Model.Occasions)
     {
-        <div class="col-md-6 panel panel-default">
+        <div class="col-md-6 panel panel-default occasion">
             <h2 class="lead panel-heading">
-                <a asp-page="Occasion" asp-route-id="@occasion.Id">@occasion.Screening.Name</a>
+                <a asp-page="Occasion" asp-route-id="@occasion.Id">@occasion.Screening</a>
             </h2>
             <div class="panel-body">
-                <div class="col-xs-3">
-                    <img src="@occasion.Hospital.PictureUrl" class="img-responsive" alt="@occasion.Hospital.Name" title="@occasion.Hospital.Name" />
+                <div class="col-xs-5">
+                    <img src="@occasion.PictureUrl" class="img-responsive" alt="@occasion.Hospital" title="@occasion.Hospital" />
                 </div>
-                <div class="col-xs-9">
-                    @occasion.Hospital.Name
-                    <br /> <p class="lead">@occasion.Hospital.Address</p>
-                    <hr /> <p class="small">@occasion.Description</p>
+                <div class="col-xs-7">
+                    <p class="name">@occasion.Hospital</p>
+                    <p class="text-primary">Kezdete: @occasion.StartTime</p>
+                    <p class="text-primary">Vége: @occasion.EndTime</p>
                 </div>
             </div>
+            <hr />
+            <p class="address">@occasion.Address.ZipCode @occasion.Address.Settlement, @occasion.Address.StreetAddress</p>
+            <p>Beutaló @(occasion.ReferralNeeded ? "szükséges" : "nem szükséges")</p>
+            <p class="small">@occasion.Description</p>
+            <p class="text-right">@occasion.RegistrationNum ember már jelentkezett</p>
         </div>
+
+        if (++i % 2 == 0)
+        {
+            <div class="clearfix"></div>
+        }
+
     }
 </div>

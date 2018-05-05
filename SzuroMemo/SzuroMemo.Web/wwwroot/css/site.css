@@ -33,3 +33,22 @@ body {
         display: none;
     }
 }
+
+
+/* Occasion styles */
+.occasion .name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.occasion .time {
+    
+}
+
+.occasion .address {
+    font-size: 18px;
+}
+
+.panel-group .panel + .panel {
+    margin-top: 0;
+}

@@ -9,23 +9,24 @@ namespace SzuroMemo.Dal.Seed
         {
             if (!context.Screening.Any())
             {
-                context.AddRange(dataAccessor().Screenings.Where(s => !dataAccessor().Occasions.Select(o => o.Screening).Contains(s.Name)));
-            }
+                var data = dataAccessor();
 
-            if (!context.Hospital.Any())
-            {
-                context.AddRange(dataAccessor().Hospitals.Where(s => !dataAccessor().Occasions.Select(o => o.Hospital).Contains(s.Name)));
-            }
+                var Screenings = data.Screenings.ToDictionary(s => s.Name, s => s);
+                var Hospitals = data.Hospitals.ToDictionary(h => h.Name, h => h);
+                //context.AddRange(dataAccessor().Screenings.Where(s => !dataAccessor().Occasions.Select(o => o.Screening).Contains(s.Name)));
+                //context.AddRange(dataAccessor().Hospitals.Where(s => !dataAccessor().Occasions.Select(o => o.Hospital).Contains(s.Name)));
 
-            if (!context.Occasion.Any())
-            {
+                context.Screening.AddRange(Screenings.Values);
+                context.Hospital.AddRange(Hospitals.Values);
                 context.Occasion.AddRange(dataAccessor().Occasions.Select(o => new Entities.Occasion
                 {
                     StartTime = o.StartTime,
                     EndTime = o.EndTime,
                     Description = o.Description,
-                    Screening = dataAccessor().Screenings.First(s => s.Name == o.Screening),
-                    Hospital = dataAccessor().Hospitals.First(h => h.Name == o.Hospital)
+                    Screening = Screenings[o.Screening],
+                    Hospital = Hospitals[o.Hospital]
+                    //Screening = dataAccessor().Screenings.First(s => s.Name == o.Screening),
+                    //Hospital = dataAccessor().Hospitals.First(h => h.Name == o.Hospital)
                 }));
             }
 

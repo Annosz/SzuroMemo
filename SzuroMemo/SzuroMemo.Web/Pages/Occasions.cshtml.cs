@@ -4,18 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SzuroMemo.Dal;
-using SzuroMemo.Dal.Entities;
+using SzuroMemo.Dal.Dtos;
+using SzuroMemo.Dal.Services;
 
 namespace SzuroMemo.Web.Pages
 {
     public class OccasionsModel : PageModel
     {
-        public IEnumerable<Occasion> Occasions { get; private set; }
+        public IEnumerable<OccasionDto> Occasions { get; private set; }
 
-        public void OnGet([FromServices]SzuroMemoDbContext ctx)
+        public void OnGet([FromServices]OccasionService occasionService)
         {
-            Occasions = ctx.Occasion;
+            Occasions = occasionService.GetOccasions();
         }
     }
 }

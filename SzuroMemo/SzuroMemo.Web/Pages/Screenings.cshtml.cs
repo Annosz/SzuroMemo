@@ -5,17 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SzuroMemo.Dal;
+using SzuroMemo.Dal.Dtos;
 using SzuroMemo.Dal.Entities;
+using SzuroMemo.Dal.Services;
 
 namespace SzuroMemo.Web.Pages
 {
     public class ScreeningsModel : PageModel
     {
-        public IEnumerable<Screening> Screenings { get; private set; }
+        public IEnumerable<ScreeningDto> Screenings { get; private set; }
 
-        public void OnGet([FromServices]SzuroMemoDbContext ctx)
+        public void OnGet([FromServices]ScreeningService screeningService)
         {
-            Screenings = ctx.Screening;
+            Screenings = screeningService.GetScreening();
         }
     }
 }

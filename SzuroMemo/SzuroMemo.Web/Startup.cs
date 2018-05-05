@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SzuroMemo.Dal;
 using SzuroMemo.Dal.Seed;
+using SzuroMemo.Dal.Services;
 
 namespace SzuroMemo.Web
 {
@@ -28,6 +29,10 @@ namespace SzuroMemo.Web
                 o => o.UseSqlServer(Configuration.GetConnectionString(nameof(SzuroMemoDbContext))));
             services.AddTransient<ScreeningDataSeeder>();
             services.AddTransient<SzuroMemoSeedData>();
+
+            services.AddScoped<OccasionService>();
+            services.AddScoped<ScreeningService>();
+
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
