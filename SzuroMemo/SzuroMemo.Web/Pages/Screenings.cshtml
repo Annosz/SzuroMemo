@@ -15,7 +15,7 @@
                 <p class="text-info">Beutaló @(screening.ReferralNeeded ? "szükséges" : "nem szükséges")</p>
                 <hr />
                 <p class="small">@screening.Description</p>
-                <p class="text-right"><a asp-page="Occasions" asp-route-id="@screening.Id">@screening.OccasionNum helyen akár rögtön jelentkezhetsz is szűrésre</a></p>
+                <p class="text-right"><a asp-page="Occasions" asp-route-screeningId="@screening.Id">@screening.OccasionNum helyen akár rögtön jelentkezhetsz is szűrésre</a></p>
             </div>
         </div>
     }

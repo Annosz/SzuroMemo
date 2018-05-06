@@ -1,0 +1,68 @@
+﻿@model SzuroMemo.Dal.Dtos.PagedResult<SzuroMemo.Dal.Dtos.OccasionDto>
+
+<div class="row">
+    @foreach (var (occasion, i) in Model.Results.Select((occasion, i) => (occasion: occasion, i: i + 1)))
+    {
+        <div class="col-md-6">
+            <vc:occasion occasion="occasion"></vc:occasion>
+        </div>
+
+        if (i % 2 == 0)
+        {
+            <div class="clearfix visible-md-block visible-lg-block"></div>
+        }
+
+    }
+
+    @if (Model.AllResultsCount != null)
+    {
+        <div class="clearfix"></div>
+        <div class="well text-center">
+            @Model.AllResultsCount találat
+            @if ((Model.PageSize ?? 0) != 0)
+            {
+                var totalPages = (int)Math.Ceiling((double)Model.AllResultsCount.Value / (double)Model.PageSize.Value);
+                <nav>
+                    <ul class="pagination">
+                        @if (Model.PageNumber != 0)
+                        {
+                            <li>
+                                <a asp-route-pageNumber="@(Model.PageNumber)">
+                                    <span>&laquo;</span>
+                                </a>
+                            </li>
+                        }
+                        @for (var pageNumber = Math.Max(0, Model.PageNumber.Value - 2); pageNumber < Math.Min(totalPages, Model.PageNumber.Value + 3); pageNumber++)
+                        {
+                            @if (Model.PageNumber == pageNumber)
+                            {
+                                <li class="active">
+                                    <a>
+                                        @(pageNumber + 1)
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a asp-route-pageNumber="@(pageNumber + 1)">
+                                        @(pageNumber + 1)
+                                    </a>
+                                </li>
+                            }
+
+                        }
+                        @if (Model.PageNumber < Model.AllResultsCount.Value / Model.PageSize.Value)
+                        {
+                            <li>
+                                <a asp-route-pageNumber="@(Model.PageNumber + 2)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        </div>
+    }
+</div>

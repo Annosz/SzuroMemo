@@ -2,20 +2,6 @@
 @model SzuroMemo.Web.Pages.OccasionsModel
 @{
     ViewData["Title"] = "Aktuális szűrések";
-    var i = 0;
 }
 
-<div class="row">
-    @foreach (var occasion in Model.Occasions)
-    {
-        <div class="col-md-6">
-            <vc:occasion occasion="occasion"></vc:occasion>
-        </div>
-
-        if (++i % 2 == 0)
-        {
-            <div class="clearfix visible-md-block visible-lg-block"></div>
-        }
-
-        }
-    </div>
+<vc:occasion-list occasions="Model.Occasions"></vc:occasion-list>

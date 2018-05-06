@@ -6,16 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SzuroMemo.Dal.Dtos;
 using SzuroMemo.Dal.Services;
+using SzuroMemo.Dal.Specifications;
 
 namespace SzuroMemo.Web.Pages
 {
     public class OccasionsModel : PageModel
     {
-        public IEnumerable<OccasionDto> Occasions { get; private set; }
-
-        public void OnGet([FromServices]OccasionService occasionService)
+        public OccasionsModel(OccasionService occasionService)
         {
-            Occasions = occasionService.GetOccasions();
+            OccasionService = occasionService;
+        }
+
+        public OccasionService OccasionService { get; }
+
+        public PagedResult<OccasionDto> Occasions { get; private set; }
+
+        public void OnGet(OccasionSpecification Specification)
+        {
+            if (Specification?.PageNumber != null)
+                Specification.PageNumber -= 1;
+            Occasions = OccasionService.GetOccasions(Specification);
         }
     }
 }
