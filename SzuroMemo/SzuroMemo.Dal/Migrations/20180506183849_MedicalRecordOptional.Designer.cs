@@ -11,9 +11,10 @@ using SzuroMemo.Dal;
 namespace SzuroMemo.Dal.Migrations
 {
     [DbContext(typeof(SzuroMemoDbContext))]
-    partial class SzuroMemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180506183849_MedicalRecordOptional")]
+    partial class MedicalRecordOptional
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

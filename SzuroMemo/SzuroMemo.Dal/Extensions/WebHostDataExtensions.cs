@@ -25,6 +25,9 @@ namespace SzuroMemo.Dal.Extensions
                     ),
                     "Seed database");
 
+        public static IWebHost SeedAdministrator(this IWebHost host) =>
+            host.Scoped<AdministratorSeeder>((s, l) => s.GetRequiredService<AdministratorSeeder>().Seed().GetAwaiter().GetResult(), "Seeding adminstrator as needed");
+
         #endregion
 
         #region Scoping

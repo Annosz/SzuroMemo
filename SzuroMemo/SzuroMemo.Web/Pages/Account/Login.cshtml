@@ -1,0 +1,27 @@
+﻿@page
+@model SzuroMemo.Web.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Bejelentkezés";
+}
+
+<div class="row">
+    <form method="post" class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Input.UserName"></label>
+            <input asp-for="Input.UserName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Input.Password"></label>
+            <input asp-for="Input.Password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Input.KeepMeSignedIn"></label>
+            <input asp-for="Input.KeepMeSignedIn" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Bejelentkezés</button>
+        </div>
+    </form>
+    <div asp-validation-summary="All" class="col-md-6 text-danger"></div>
+</div>
+

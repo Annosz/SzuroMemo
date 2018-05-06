@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +8,7 @@ using SzuroMemo.Dal.Entities;
 
 namespace SzuroMemo.Dal
 {
-    public class SzuroMemoDbContext: DbContext
+    public class SzuroMemoDbContext: IdentityDbContext<User, IdentityRole<int>, int>
     {
         #region Constructor
 
@@ -25,16 +27,16 @@ namespace SzuroMemo.Dal
         public DbSet<Occasion> Occasion { get; set; }
         public DbSet<Registration> Registration { get; set; }
         public DbSet<Screening> Screening { get; set; }
-        public DbSet<User> User { get; set; }
 
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<LastScreening>().HasAlternateKey(ls => new { ls.MedicalRecordId, ls.ScreeningId });
             modelBuilder.Entity<Registration>().HasAlternateKey(r => new { r.OccasionId, r.UserId });
             modelBuilder.Entity<MedicalRecord>().HasAlternateKey(mr => new { mr.UserId });
-            modelBuilder.Entity<User>().HasAlternateKey(u => new { u.MedicalRecordId });
 
             modelBuilder.Entity<Hospital>(e =>
             {
@@ -45,6 +47,8 @@ namespace SzuroMemo.Dal
                 .HasOne(u => u.MedicalRecord)
                 .WithOne(m => m.User)
                 .HasForeignKey<MedicalRecord>(m => m.UserId);
+
+            modelBuilder.Entity<User>().ToTable("Users");
         }
     }
 }

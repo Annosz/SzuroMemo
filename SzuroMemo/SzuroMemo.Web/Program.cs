@@ -20,6 +20,7 @@ namespace SzuroMemo.Web
             BuildWebHost(args)
                 .MigrateDatabase<SzuroMemoDbContext>()
                 .Seed<ScreeningDataSeeder, SzuroMemoDbContext, SzuroMemoSeedData>()
+                .SeedAdministrator()
                 .Run();
         }
 
