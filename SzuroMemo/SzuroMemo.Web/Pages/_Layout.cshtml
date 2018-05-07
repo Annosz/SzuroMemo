@@ -34,6 +34,29 @@
                     <li><a asp-page="/Screenings">Ismertetők</a></li>
                     <li><a asp-page="/Occasions">Aktuális szűrések</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a asp-page="/Account/Profile" title="Profilom">
+                                Profilom
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Account" asp-action="LogOut" title="Kijelentkezés">
+                                <i class="glyphicon glyphicon-log-out"></i>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-page="/Account/Login" title="Bejelentkezés">
+                                <i class="glyphicon glyphicon-log-in"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </nav>

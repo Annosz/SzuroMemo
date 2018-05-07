@@ -1,0 +1,18 @@
+﻿@page
+@model SzuroMemo.Web.Pages.Account.ProfileModel
+@{
+    ViewData["Title"] = "Profilom";
+}
+
+<h2>Profilom</h2>
+<div class="panel">
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item">felhasználónév: @Model.SzuroMemoUser.Name</li>
+            <li class="list-group-item">név: @User.Identity.Name</li>
+            <li class="list-group-item">e-mail cím: @Model.SzuroMemoUser.Email</li>
+            <li class="list-group-item">szerepkörök: @string.Join(", ", Model.Roles)</li>
+        </ul>
+    </div>
+</div>
+

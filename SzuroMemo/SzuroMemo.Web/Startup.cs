@@ -48,6 +48,7 @@ namespace SzuroMemo.Web
                     options.Conventions.AddPageRoute("/Screenings", "Ismertetok");
                     options.Conventions.AddPageRoute("/Occasions", "Aktualis_szuresek");
                     options.Conventions.AddPageRoute("/Account/Login", "Bejelentkezes");
+                    options.Conventions.AddPageRoute("/Account/Profile", "Profilom");
                 });
         }
 
