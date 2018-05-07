@@ -11,8 +11,8 @@ using SzuroMemo.Dal;
 namespace SzuroMemo.Dal.Migrations
 {
     [DbContext(typeof(SzuroMemoDbContext))]
-    [Migration("20180506183849_MedicalRecordOptional")]
-    partial class MedicalRecordOptional
+    [Migration("20180507092542_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

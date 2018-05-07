@@ -28,7 +28,7 @@ namespace SzuroMemo.Dal.Seed
             if (!(await UserManager.GetUsersInRoleAsync(Roles.Administrators)).Any())
             {
                 var user = new User { Email = "admin@szuromemo.hu", Name = "Adminisztrátor", SecurityStamp = Guid.NewGuid().ToString(), UserName = "admin" };
-                var createResult = await UserManager.CreateAsync(user, password: "admin123");
+                var createResult = await UserManager.CreateAsync(user, password: "$Administrator123");
                 var addToRoleResult = await UserManager.AddToRoleAsync(user, Roles.Administrators);
                 if (!createResult.Succeeded || !addToRoleResult.Succeeded)
                     throw new ApplicationException($"Administrator could not be created: {string.Join(", ", createResult.Errors.Concat(addToRoleResult.Errors).Select(e => e.Description))}");

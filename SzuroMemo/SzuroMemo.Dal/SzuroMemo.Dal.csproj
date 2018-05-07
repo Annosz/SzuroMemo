@@ -8,10 +8,13 @@
     <Compile Remove="Migrations\20180428152720_Initial.cs" />
     <Compile Remove="Migrations\20180502081052_Initial.cs" />
     <Compile Remove="Migrations\20180502112950_Initial.cs" />
+    <Compile Remove="Migrations\20180505130449_Initial.cs" />
+    <Compile Remove="Migrations\20180506163954_AddIdentity.cs" />
     <Compile Remove="Migrations\20180506175329_MedicalRecordOptional.cs" />
     <Compile Remove="Migrations\20180506180334_MedicalRecordOptional.cs" />
     <Compile Remove="Migrations\20180506181909_MedicalRecordOptional.cs" />
     <Compile Remove="Migrations\20180506183056_MedicalRecordOptional.cs" />
+    <Compile Remove="Migrations\20180506183849_MedicalRecordOptional.cs" />
   </ItemGroup>
 
   <ItemGroup>
