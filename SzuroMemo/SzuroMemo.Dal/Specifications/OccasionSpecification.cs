@@ -7,7 +7,7 @@ namespace SzuroMemo.Dal.Specifications
     public class OccasionSpecification
     {
         public int? PageNumber { get; set; }
-        public int? PageSize { get; set; } = 24;
+        public int? PageSize { get; set; }
 
         public string Screening { get; set; }
         public int? ScreeningId { get; set; }

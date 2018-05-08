@@ -2,16 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using SzuroMemo.Dal;
 using SzuroMemo.Dal.Entities;
 using SzuroMemo.Dal.Seed;
 using SzuroMemo.Dal.Services;
+using SzuroMemo.Dal.OData;
 
 namespace SzuroMemo.Web
 {
@@ -41,6 +45,9 @@ namespace SzuroMemo.Web
                 .AddEntityFrameworkStores<SzuroMemoDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddOData();
+            services.AddTransient<OccasionsModelBuilder>();
+
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
@@ -49,11 +56,16 @@ namespace SzuroMemo.Web
                     options.Conventions.AddPageRoute("/Occasions", "Aktualis_szuresek");
                     options.Conventions.AddPageRoute("/Account/Login", "Bejelentkezes");
                     options.Conventions.AddPageRoute("/Account/Profile", "Profilom");
+                })
+                .AddJsonOptions(opt =>
+                {
+                    opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OccasionsModelBuilder modelBuilder)
         {
             if (env.IsDevelopment())
             {
@@ -69,12 +81,16 @@ namespace SzuroMemo.Web
 
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
+            app.UseMvc(routeBuilder =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+                routeBuilder.MapODataServiceRoute("ODataRoutes", "odata", modelBuilder.GetEdmModel(app.ApplicationServices));
+            }
+            /*routes =>
+        {
+            routes.MapRoute(
+                name: "default",
+                template: "{controller}/{action=Index}/{id?}");
+        }*/);
         }
     }
 }

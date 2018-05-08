@@ -23,8 +23,13 @@ namespace SzuroMemo.Web.Pages
 
         public void OnGet(OccasionSpecification Specification)
         {
-            if (Specification?.PageNumber != null)
+            if (Specification == null)
+                Specification = new OccasionSpecification();
+            if (Specification.PageNumber != null)
                 Specification.PageNumber -= 1;
+            if (Specification.PageSize == null)
+                Specification.PageSize = 2;
+
             Occasions = OccasionService.GetOccasions(Specification);
         }
     }
