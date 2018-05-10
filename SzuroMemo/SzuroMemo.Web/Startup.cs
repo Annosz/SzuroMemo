@@ -40,6 +40,7 @@ namespace SzuroMemo.Web
             services.AddScoped<OccasionService>();
             services.AddScoped<ScreeningService>();
             services.AddScoped<ScreeningHeaderService>();
+            services.AddScoped<MedicalRecordService>();
 
             services.AddIdentity<User, IdentityRole<int>>()
                 .AddEntityFrameworkStores<SzuroMemoDbContext>()
@@ -56,6 +57,7 @@ namespace SzuroMemo.Web
                     options.Conventions.AddPageRoute("/Occasions", "Aktualis_szuresek");
                     options.Conventions.AddPageRoute("/Account/Login", "Bejelentkezes");
                     options.Conventions.AddPageRoute("/Account/Profile", "Profilom");
+                    options.Conventions.AddPageRoute("/Account/Details", "Adataim");
                 })
                 .AddJsonOptions(opt =>
                 {

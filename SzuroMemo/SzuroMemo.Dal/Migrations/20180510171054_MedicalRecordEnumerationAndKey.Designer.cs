@@ -12,9 +12,10 @@ using SzuroMemo.Dal.Entities;
 namespace SzuroMemo.Dal.Migrations
 {
     [DbContext(typeof(SzuroMemoDbContext))]
-    partial class SzuroMemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180510171054_MedicalRecordEnumerationAndKey")]
+    partial class MedicalRecordEnumerationAndKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,13 +170,13 @@ namespace SzuroMemo.Dal.Migrations
 
                     b.Property<int?>("Gender");
 
-                    b.Property<double?>("Height");
+                    b.Property<double>("Height");
 
                     b.Property<int>("UserId");
 
                     b.Property<int?>("UserId1");
 
-                    b.Property<double?>("Weight");
+                    b.Property<double>("Weight");
 
                     b.HasKey("Id");
 

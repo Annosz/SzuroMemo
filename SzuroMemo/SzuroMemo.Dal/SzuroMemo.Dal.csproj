@@ -15,6 +15,12 @@
     <Compile Remove="Migrations\20180506181909_MedicalRecordOptional.cs" />
     <Compile Remove="Migrations\20180506183056_MedicalRecordOptional.cs" />
     <Compile Remove="Migrations\20180506183849_MedicalRecordOptional.cs" />
+    <Compile Remove="Migrations\20180508160054_GenderEnumeration.cs" />
+    <Compile Remove="Migrations\20180510153241_UserForeignKey.cs" />
+    <Compile Remove="Migrations\20180510154810_UserForeignKeyFix.cs" />
+    <Compile Remove="Migrations\20180510161018_UserForeignKeyFix2.cs" />
+    <Compile Remove="Migrations\20180510170344_UserMedicalRecord.cs" />
+    <Compile Remove="Migrations\20180510170839_UserMedicalRecord.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,9 +9,6 @@ namespace SzuroMemo.Dal.Entities
     {
         public string Name { get; set; }
 
-        public MedicalRecord MedicalRecord { get; set; }
-        public int? MedicalRecordId { get; set; }
-
         public ICollection<Registration> Registrations { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace SzuroMemo.Web.Pages.Account
     {
         public User SzuroMemoUser { get; private set; }
         public IEnumerable<string> Roles { get; private set; }
+
         public async Task OnGet([FromServices]UserManager<User> userManager)
         {
             SzuroMemoUser = await userManager.GetUserAsync(HttpContext.User);

@@ -43,11 +43,6 @@ namespace SzuroMemo.Dal
                 e.OwnsOne(h => h.Address);
             });
 
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.MedicalRecord)
-                .WithOne(m => m.User)
-                .HasForeignKey<MedicalRecord>(m => m.UserId);
-
             modelBuilder.Entity<User>().ToTable("Users");
         }
     }
