@@ -16,7 +16,7 @@ namespace SzuroMemo.Dal.Services
 
         public SzuroMemoDbContext DbContext { get; }
 
-        public IEnumerable<RegistrationDto> GetRegistrationToUser(int userId) =>
+        public IEnumerable<RegistrationDto> GetRegistratiosnToUser(int userId) =>
             DbContext.Registration.Where(r => r.UserId == userId)
             .Select(r => new RegistrationDto
             {
@@ -24,6 +24,27 @@ namespace SzuroMemo.Dal.Services
                 Arrival = r.Arrival,
                 OccasionId = r.OccasionId,
                 UserId = r.UserId
+            });
+
+        public IEnumerable<OccasionDto> GetOccasionsToUser(int userId) =>
+            DbContext.Registration.Where(r => r.UserId == userId)
+            .Select(r => new OccasionDto
+            {
+                Id = r.Occasion.Id,
+                StartTime = r.Occasion.StartTime,
+                EndTime = r.Occasion.EndTime,
+                Description = r.Occasion.Description,
+
+                ScreeningId = r.Occasion.Screening.Id,
+                Screening = r.Occasion.Screening.Name,
+                ReferralNeeded = r.Occasion.Screening.ReferralNeeded,
+
+                HospitalId = r.Occasion.Hospital.Id,
+                Hospital = r.Occasion.Hospital.Name,
+                Address = r.Occasion.Hospital.Address,
+                PictureUrl = r.Occasion.Hospital.PictureUrl,
+
+                RegistrationNum = r.Occasion.Registrations.Count
             });
 
         public RegistrationDto RegistrateUserToOccasion(int userId, int occasionId)

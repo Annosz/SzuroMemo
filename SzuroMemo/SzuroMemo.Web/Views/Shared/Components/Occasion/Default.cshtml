@@ -20,7 +20,7 @@
         <p>Beutaló @(Model.ReferralNeeded ? "szükséges" : "nem szükséges")</p>
         <p class="small">@Model.Description</p>
         <p class="text-right">@Model.RegistrationNum ember már jelentkezett</p>
-        <form asp-action="Register" asp-controller="Registration", asp-route-occasionId="@Model.Id", asp-route-query="@Context.Request.QueryString">
+        <form asp-action="Register" asp-controller="Registration" asp-route-occasionId="@Model.Id" asp-route-origin="@Context.Request.Path" asp-route-query="@Context.Request.QueryString">
             <div class="text-right">
                 <button type="submit" class="btn btn-primary">Naptáramba</button>
             </div>

@@ -1,0 +1,8 @@
+﻿@page
+@model SzuroMemo.Web.Pages.CalendarModel
+@{
+    ViewData["Title"] = "Aktuális szűrések";
+}
+
+<h2>Szűrések, amikre már jelentkeztem</h2>
+<vc:occasion-list occasions="Model.Occasions"></vc:occasion-list>

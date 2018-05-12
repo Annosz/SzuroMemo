@@ -48,7 +48,7 @@ namespace SzuroMemo.Web.ViewComponents
 
         private bool UserNotRegistered(OccasionDto occasion)
         {
-            return RegistrationService.GetRegistrationToUser(CurrentUserId.Value).FirstOrDefault(r => r.OccasionId == occasion.Id) == null;
+            return RegistrationService.GetRegistratiosnToUser(CurrentUserId.Value).FirstOrDefault(r => r.OccasionId == occasion.Id) == null;
         }
 
         #endregion

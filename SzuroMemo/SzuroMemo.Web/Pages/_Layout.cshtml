@@ -38,6 +38,11 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
+                            <a asp-page="/Account/Calendar" title="Naptáram">
+                                Naptáram
+                            </a>
+                        </li>
+                        <li>
                             <a asp-page="/Account/Details" title="Adataim">
                                 Adataim
                             </a>

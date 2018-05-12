@@ -30,19 +30,19 @@ namespace SzuroMemo.Web.Controllers
         public int? CurrentUserId => User.Identity.IsAuthenticated ? (currentUserId ?? (currentUserId = int.Parse(UserManager.GetUserId(User)))) : null;
 
         [HttpPost]
-        public IActionResult Register(int occasionId, string query)
+        public IActionResult Register(int occasionId, string origin, string query)
         {
             RegistrationService.RegistrateUserToOccasion(CurrentUserId.Value, occasionId);
 
-            return Redirect("/Occasions" + query);
+            return Redirect(origin + query);
         }
 
         [HttpPost]
-        public IActionResult Unregister(int occasionId, string query)
+        public IActionResult Unregister(int occasionId, string origin, string query)
         {
             RegistrationService.UnregistrateUserFromOccasion(CurrentUserId.Value, occasionId);
 
-            return Redirect("/Occasions" + query);
+            return Redirect(origin + query);
         }
     }
 }

@@ -59,6 +59,7 @@ namespace SzuroMemo.Web
                     options.Conventions.AddPageRoute("/Account/Login", "Bejelentkezes");
                     options.Conventions.AddPageRoute("/Account/Profile", "Profilom");
                     options.Conventions.AddPageRoute("/Account/Details", "Adataim");
+                    options.Conventions.AddPageRoute("/Account/Calendar", "Naptaram");
                 })
                 .AddJsonOptions(opt =>
                 {
