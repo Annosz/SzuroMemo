@@ -41,6 +41,7 @@ namespace SzuroMemo.Web
             services.AddScoped<ScreeningService>();
             services.AddScoped<ScreeningHeaderService>();
             services.AddScoped<MedicalRecordService>();
+            services.AddScoped<RegistrationService>();
 
             services.AddIdentity<User, IdentityRole<int>>()
                 .AddEntityFrameworkStores<SzuroMemoDbContext>()
