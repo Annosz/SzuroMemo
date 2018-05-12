@@ -4,4 +4,68 @@
     ViewData["Title"] = "Aktuális szűrések";
 }
 
+<div class="row">
+    <form method="post">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Specification.Hospital"></label>
+                <input asp-for="Specification.Hospital" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Specification.Settlement"></label>
+                <input asp-for="Specification.Settlement" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Specification.MinStart"></label>
+                <input asp-for="Specification.MinStart" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Specification.MaxEnd"></label>
+                <input asp-for="Specification.MaxEnd" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="form-group">
+                    <label asp-for="Specification.Screening"></label>
+                    <input asp-for="Specification.Screening" class="form-control" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Specification.ReferralNotNeeded"></label>
+                    <input asp-for="Specification.ReferralNotNeeded" class="form-control" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Specification.HasDescription"></label>
+                    <input asp-for="Specification.HasDescription" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Specification.PageSize"></label>
+                        <input asp-for="Specification.PageSize" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Specification.Order"></label>
+                        <select asp-for=Specification.Order
+                                asp-items="Html.GetEnumSelectList<SzuroMemo.Dal.Specifications.OccasionSpecification.ScreeningOrder>()"
+                                class="form-control">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <div class="form-group text-right">
+            <button type="submit" class="btn btn-default">Szűrés</button>
+        </div>
+        <div asp-validation-summary="All" class="col-md-6 text-danger"></div>
+</form>
+</div>
+
+<hr />
+
 <vc:occasion-list occasions="Model.Occasions"></vc:occasion-list>

@@ -54,6 +54,10 @@ namespace SzuroMemo.Dal.Services
                 query = query.Where(o => o.StartTime >= specification.MinStart);
             if (specification.MaxEnd != null)
                 query = query.Where(o => o.EndTime <= specification.MaxEnd);
+            if (specification.ReferralNotNeeded == true)
+                query = query.Where(o => !o.Screening.ReferralNeeded);
+            if (specification.HasDescription == true)
+                query = query.Where(o => !String.IsNullOrEmpty(o.Description));
 
 
             //Ordering
