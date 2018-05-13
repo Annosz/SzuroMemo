@@ -38,22 +38,22 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
-                            <a asp-page="/Account/Calendar" title="Naptáram">
+                            <a asp-page="/Account/Personal/Calendar" title="Naptáram">
                                 Naptáram
                             </a>
                         </li>
                         <li>
-                            <a asp-page="/Account/Details" title="Adataim">
+                            <a asp-page="/Account/Personal/Details" title="Adataim">
                                 Adataim
                             </a>
                         </li>
                         <li>
-                            <a asp-page="/Account/Profile" title="Profilom">
+                            <a asp-page="/Account/Manage/Index" title="Profilom">
                                 Profilom
                             </a>
                         </li>
                         <li>
-                            <a asp-controller="Account" asp-action="LogOut" title="Kijelentkezés">
+                            <a asp-controller="Account" asp-action="Logout" title="Kijelentkezés">
                                 <i class="glyphicon glyphicon-log-out"></i>
                             </a>
                         </li>
@@ -61,9 +61,10 @@
                     else
                     {
                         <li>
-                            <a asp-page="/Account/Login" title="Bejelentkezés">
-                                <i class="glyphicon glyphicon-log-in"></i>
-                            </a>
+                            <a asp-page="/Account/Register" title="Regisztráció">Regisztráció</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Account/Login" title="Bejelentkezés">Bejelentkezés</a>
                         </li>
                     }
                 </ul>

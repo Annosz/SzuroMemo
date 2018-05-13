@@ -11,7 +11,7 @@ using SzuroMemo.Dal.Entities;
 using SzuroMemo.Dal.Services;
 using SzuroMemo.Dal.Specifications;
 
-namespace SzuroMemo.Web.Pages
+namespace SzuroMemo.Web.Pages.Account.Personal
 {
     [Authorize]
     public class CalendarModel : PageModel

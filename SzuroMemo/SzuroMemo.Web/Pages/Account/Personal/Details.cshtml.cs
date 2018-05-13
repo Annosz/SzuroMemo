@@ -10,7 +10,7 @@ using SzuroMemo.Dal.Dtos;
 using SzuroMemo.Dal.Entities;
 using SzuroMemo.Dal.Services;
 
-namespace SzuroMemo.Web.Pages
+namespace SzuroMemo.Web.Pages.Account.Personal
 {
     [Authorize]
     public class DetailsModel : PageModel

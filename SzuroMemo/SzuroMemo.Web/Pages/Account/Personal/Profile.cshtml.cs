@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SzuroMemo.Dal.Entities;
 
-namespace SzuroMemo.Web.Pages.Account
+namespace SzuroMemo.Web.Pages.Account.Personal
 {
     [Authorize]
     public class ProfileModel : PageModel

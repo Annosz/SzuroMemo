@@ -1,64 +1,98 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using SzuroMemo.Dal.Entities;
 
 namespace SzuroMemo.Web.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        #region Constructor
+        private readonly SignInManager<User> _signInManager;
+        private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<User> signInManager)
+        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
         {
-            SignInManager = signInManager;
-        }
-
-        #endregion
-
-        #region Properties
-
-        public class InputModel
-        {
-            [Required(ErrorMessage = "A felhasználónév megadása kötelező"), Display(Name = "Felhasználónév")]
-            public string UserName { get; set; }
-            [Required(ErrorMessage = "A jelszó megadása kötelező"), DataType(DataType.Password), Display(Name = "Jelszó")]
-            public string Password { get; set; }
-            [Display(Name = "Maradjak belépve")]
-            public bool KeepMeSignedIn { get; set; }
+            _signInManager = signInManager;
+            _logger = logger;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
-        
-        private SignInManager<User> SignInManager { get; }
 
-        #endregion
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public ActionResult OnGet()
+        public string ReturnUrl { get; set; }
+
+        [TempData]
+        public string ErrorMessage { get; set; }
+
+        public class InputModel
         {
-            if (User.Identity.IsAuthenticated)
-                return RedirectToPage("/Index");
-            return Page();
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Required]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
+
+            [Display(Name = "Remember me?")]
+            public bool RememberMe { get; set; }
         }
 
-        public ActionResult OnPost()
+        public async Task OnGetAsync(string returnUrl = null)
         {
+            if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                ModelState.AddModelError(string.Empty, ErrorMessage);
+            }
+
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            ReturnUrl = returnUrl;
+        }
+
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        {
+            ReturnUrl = returnUrl;
+
             if (ModelState.IsValid)
             {
-                var signInResult = SignInManager
-                    .PasswordSignInAsync(Input.UserName, Input.Password, Input.KeepMeSignedIn, false)
-                    .GetAwaiter().GetResult();
-                if (!signInResult.Succeeded)
-                    ModelState.AddModelError("", "Sikertelen bejelentkezési kísérlet.");
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+                    return LocalRedirect(Url.GetLocalUrl(returnUrl));
+                }
+                if (result.RequiresTwoFactor)
+                {
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning("User account locked out.");
+                    return RedirectToPage("./Lockout");
+                }
                 else
-                    return RedirectToPage("/Index");
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Page();
+                }
             }
+
+            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

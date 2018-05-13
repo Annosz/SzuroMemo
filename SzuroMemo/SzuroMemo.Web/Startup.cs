@@ -16,6 +16,8 @@ using SzuroMemo.Dal.Entities;
 using SzuroMemo.Dal.Seed;
 using SzuroMemo.Dal.Services;
 using SzuroMemo.Dal.OData;
+using SzuroMemo.Services;
+using SzuroMemo.Web.Services;
 
 namespace SzuroMemo.Web
 {
@@ -43,9 +45,19 @@ namespace SzuroMemo.Web
             services.AddScoped<MedicalRecordService>();
             services.AddScoped<RegistrationService>();
 
-            services.AddIdentity<User, IdentityRole<int>>()
+            services.AddIdentity<User, IdentityRole<int>>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = true;
+            })
                 .AddEntityFrameworkStores<SzuroMemoDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
 
             services.AddOData();
             services.AddTransient<OccasionsModelBuilder>();
@@ -57,9 +69,12 @@ namespace SzuroMemo.Web
                     options.Conventions.AddPageRoute("/Screenings", "Ismertetok");
                     options.Conventions.AddPageRoute("/Occasions", "Aktualis_szuresek");
                     options.Conventions.AddPageRoute("/Account/Login", "Bejelentkezes");
-                    options.Conventions.AddPageRoute("/Account/Profile", "Profilom");
-                    options.Conventions.AddPageRoute("/Account/Details", "Adataim");
-                    options.Conventions.AddPageRoute("/Account/Calendar", "Naptaram");
+                    options.Conventions.AddPageRoute("/Account/Personal/Profile", "Profilom");
+                    options.Conventions.AddPageRoute("/Account/Personal/Details", "Adataim");
+                    options.Conventions.AddPageRoute("/Account/Personal/Calendar", "Naptaram");
+
+                    options.Conventions.AuthorizeFolder("/Account/Manage");
+                    options.Conventions.AuthorizePage("/Account/Logout");
                 })
                 .AddJsonOptions(opt =>
                 {

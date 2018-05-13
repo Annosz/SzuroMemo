@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SzuroMemo.Dal.Entities;
 
 namespace SzuroMemo.Web.Controllers
@@ -11,16 +12,19 @@ namespace SzuroMemo.Web.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        public AccountController(SignInManager<User> signInManager)
+        private readonly SignInManager<User> _signInManager;
+        private readonly ILogger _logger;
+
+        public AccountController(SignInManager<User> signInManager, ILogger<AccountController> logger)
         {
-            SignInManager = signInManager;
+            _signInManager = signInManager;
+            _logger = logger;
         }
 
-        public SignInManager<User> SignInManager { get; }
-
-        public async Task<IActionResult> LogOut()
+        public async Task<IActionResult> Logout()
         {
-            await SignInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
             return RedirectToPage("/Index");
         }
     }
