@@ -7,9 +7,11 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Win32.TaskScheduler;
 using SzuroMemo.Dal;
 using SzuroMemo.Dal.Extensions;
 using SzuroMemo.Dal.Seed;
+using SzuroMemo.Web.Extensions;
 
 namespace SzuroMemo.Web
 {
@@ -21,8 +23,10 @@ namespace SzuroMemo.Web
                 .MigrateDatabase<SzuroMemoDbContext>()
                 .Seed<ScreeningDataSeeder, SzuroMemoDbContext, SzuroMemoSeedData>()
                 .SeedAdministrator()
+                .ScheduleEmails()
                 .Run();
         }
+
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
