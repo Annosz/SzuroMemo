@@ -135,5 +135,23 @@ namespace SzuroMemo.Dal.Services
             };
 
         }
+
+        public OccasionDto AddOccasion(OccasionDto occasion)
+        {
+            DbContext.Add(new Occasion
+            {
+                StartTime = occasion.StartTime,
+                EndTime = occasion.EndTime,
+                Description = occasion.Description,
+
+                ScreeningId = occasion.ScreeningId,
+
+                HospitalId = occasion.HospitalId
+            });
+
+            DbContext.SaveChanges();
+
+            return occasion;
+        }
     }
 }

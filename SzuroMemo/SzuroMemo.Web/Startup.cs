@@ -44,6 +44,7 @@ namespace SzuroMemo.Web
             services.AddScoped<ScreeningHeaderService>();
             services.AddScoped<MedicalRecordService>();
             services.AddScoped<RegistrationService>();
+            services.AddScoped<HospitalHeaderService>();
 
             services.AddIdentity<User, IdentityRole<int>>(config =>
             {
@@ -72,6 +73,7 @@ namespace SzuroMemo.Web
                     options.Conventions.AddPageRoute("/Account/Personal/Profile", "Profilom");
                     options.Conventions.AddPageRoute("/Account/Personal/Details", "Adataim");
                     options.Conventions.AddPageRoute("/Account/Personal/Calendar", "Naptaram");
+                    options.Conventions.AddPageRoute("/NewOccasion", "Uj_szures");
 
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");

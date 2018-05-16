@@ -10,7 +10,7 @@ namespace SzuroMemo.Dal.Specifications
     {
         public int? PageNumber { get; set; }
         [DisplayName("Találatok száma egy oldalon")]
-        public int? PageSize { get; set; } = 24;
+        public int? PageSize { get; set; }
 
         [DisplayName("Szűrővizsgálat")]
         public string Screening { get; set; }

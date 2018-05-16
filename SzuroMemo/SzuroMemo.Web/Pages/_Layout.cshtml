@@ -37,6 +37,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)
                     {
+                        @if (User.IsInRole(SzuroMemo.Dal.Users.Roles.Administrators))
+                        {
+                        <li>
+                            <a asp-page="/NewOccasion" title="Új szűrés">
+                                Új szűrés
+                            </a>
+                        </li>
+                        }
                         <li>
                             <a asp-page="/Account/Personal/Calendar" title="Naptáram">
                                 Naptáram

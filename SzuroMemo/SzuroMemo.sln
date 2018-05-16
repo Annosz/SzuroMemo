@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SzuroMemo.Web", "SzuroMemo.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SzuroMemo.Dal", "SzuroMemo.Dal\SzuroMemo.Dal.csproj", "{F81B1AB3-09B2-4964-AAC9-19633A324B33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender", "EmailSender\EmailSender.csproj", "{D419CB16-6630-4CE0-AA16-F142639D746F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender", "EmailSender\EmailSender.csproj", "{D419CB16-6630-4CE0-AA16-F142639D746F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
