@@ -136,6 +136,37 @@ namespace SzuroMemo.Dal.Services
 
         }
 
+
+        public OccasionDto GetOccasion(int occasionId)
+        {
+            //Query
+            IQueryable<Occasion> query = DbContext.Occasion.Where(o => o.Id == occasionId)
+                .Include(o => o.Hospital)
+                .Include(o => o.Hospital.Address)
+                .Include(o => o.Screening)
+                .Include(o => o.Registrations);
+
+            return query.Select(o => new OccasionDto
+            {
+                Id = o.Id,
+                StartTime = o.StartTime,
+                EndTime = o.EndTime,
+                Description = o.Description,
+
+                ScreeningId = o.Screening.Id,
+                Screening = o.Screening.Name,
+                ReferralNeeded = o.Screening.ReferralNeeded,
+
+                HospitalId = o.Hospital.Id,
+                Hospital = o.Hospital.Name,
+                Address = o.Hospital.Address,
+                PictureUrl = o.Hospital.PictureUrl,
+
+                RegistrationNum = o.Registrations.Count
+            }).First();
+        }
+
+
         public OccasionDto AddOccasion(OccasionDto occasion)
         {
             DbContext.Add(new Occasion
@@ -152,6 +183,39 @@ namespace SzuroMemo.Dal.Services
             DbContext.SaveChanges();
 
             return occasion;
+        }
+
+        public OccasionDto RemoveOccasion(int occasionId)
+        {
+            Occasion occasion = DbContext.Occasion
+                .Include(o => o.Hospital)
+                .Include(o => o.Hospital.Address)
+                .Include(o => o.Screening)
+                .Include(o => o.Registrations)
+                .FirstOrDefault(o => o.Id == occasionId);
+
+            DbContext.Occasion.Remove(occasion);
+
+            DbContext.SaveChanges();
+
+            return new OccasionDto
+            {
+                Id = occasion.Id,
+                StartTime = occasion.StartTime,
+                EndTime = occasion.EndTime,
+                Description = occasion.Description,
+
+                ScreeningId = occasion.Screening.Id,
+                Screening = occasion.Screening.Name,
+                ReferralNeeded = occasion.Screening.ReferralNeeded,
+
+                HospitalId = occasion.Hospital.Id,
+                Hospital = occasion.Hospital.Name,
+                Address = occasion.Hospital.Address,
+                PictureUrl = occasion.Hospital.PictureUrl,
+
+                RegistrationNum = occasion.Registrations.Count
+            };
         }
     }
 }

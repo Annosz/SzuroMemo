@@ -1,0 +1,17 @@
+﻿@page
+@model SzuroMemo.Web.Pages.OccasionModel
+@{
+    ViewData["Title"] = "Occasion";
+}
+
+<vc:occasion occasion="Model.Occasion"></vc:occasion>
+
+@if (User.Identity.IsAuthenticated && User.IsInRole(SzuroMemo.Dal.Users.Roles.Administrators))
+{
+    <div class="text-center">
+        <a type="button" class="btn-danger btn-lg" title="Szűrés törlése"
+           asp-controller="Occasion" asp-action="Delete" asp-route-occasionId="@Model.Occasion.Id">
+            Szűrés törlése
+        </a>
+    </div>
+}

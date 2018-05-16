@@ -74,6 +74,7 @@ namespace SzuroMemo.Web
                     options.Conventions.AddPageRoute("/Account/Personal/Details", "Adataim");
                     options.Conventions.AddPageRoute("/Account/Personal/Calendar", "Naptaram");
                     options.Conventions.AddPageRoute("/NewOccasion", "Uj_szures");
+                    options.Conventions.AddPageRoute("/Occasion", "Szures");
 
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
