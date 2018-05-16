@@ -12,6 +12,7 @@ using SzuroMemo.Dal;
 using SzuroMemo.Dal.Extensions;
 using SzuroMemo.Dal.Seed;
 using SzuroMemo.Web.Extensions;
+using SzuroMemo.Web.Ssl;
 
 namespace SzuroMemo.Web
 {
@@ -31,6 +32,7 @@ namespace SzuroMemo.Web
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseKestrel(options => options.ConfigureEndpoints())
                 .Build();
     }
 }

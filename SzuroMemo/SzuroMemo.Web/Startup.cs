@@ -18,6 +18,8 @@ using SzuroMemo.Dal.Services;
 using SzuroMemo.Dal.OData;
 using SzuroMemo.Services;
 using SzuroMemo.Web.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace SzuroMemo.Web
 {
@@ -46,16 +48,26 @@ namespace SzuroMemo.Web
             services.AddScoped<RegistrationService>();
             services.AddScoped<HospitalHeaderService>();
 
+
             services.AddIdentity<User, IdentityRole<int>>(config =>
             {
                 config.SignIn.RequireConfirmedEmail = true;
             })
                 .AddEntityFrameworkStores<SzuroMemoDbContext>()
                 .AddDefaultTokenProviders();
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
             services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
@@ -100,6 +112,9 @@ namespace SzuroMemo.Web
             }
 
             app.UseStaticFiles();
+
+            var options = new RewriteOptions().AddRedirectToHttps();
+            app.UseRewriter(options);
 
             app.UseAuthentication();
 
