@@ -12,9 +12,10 @@ using SzuroMemo.Dal.Entities;
 namespace SzuroMemo.Dal.Migrations
 {
     [DbContext(typeof(SzuroMemoDbContext))]
-    partial class SzuroMemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180516123946_MedicalRecordDataAdded")]
+    partial class MedicalRecordDataAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,6 +147,8 @@ namespace SzuroMemo.Dal.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("MedicalRecordId");
+
+                    b.Property<int>("NextRecommended");
 
                     b.Property<int>("ScreeningId");
 
@@ -384,11 +387,9 @@ namespace SzuroMemo.Dal.Migrations
                         {
                             b1.Property<int>("HospitalId");
 
-                            b1.Property<string>("Settlement")
-                                .HasMaxLength(150);
+                            b1.Property<string>("Settlement");
 
-                            b1.Property<string>("StreetAddress")
-                                .HasMaxLength(300);
+                            b1.Property<string>("StreetAddress");
 
                             b1.Property<int>("ZipCode");
 
@@ -424,11 +425,9 @@ namespace SzuroMemo.Dal.Migrations
                         {
                             b1.Property<int?>("MedicalRecordId");
 
-                            b1.Property<string>("Settlement")
-                                .HasMaxLength(150);
+                            b1.Property<string>("Settlement");
 
-                            b1.Property<string>("StreetAddress")
-                                .HasMaxLength(300);
+                            b1.Property<string>("StreetAddress");
 
                             b1.Property<int>("ZipCode");
 

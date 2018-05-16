@@ -22,7 +22,7 @@ namespace SzuroMemo.Web.Extensions
                 td.RegistrationInfo.Description = "Sends reminder e-mails to SzuroMemo users";
 
                 // Create a trigger that will fire the task at this time every other day
-                td.Triggers.Add(new DailyTrigger { DaysInterval = 7, StartBoundary = DateTime.Now.AddSeconds(5) });
+                td.Triggers.Add(new DailyTrigger { DaysInterval = 7, StartBoundary = DateTime.Now.AddDays(3) });
 
                 // Create an action that will send emails
                 string runable = Path.Combine(Directory.GetCurrentDirectory(), @"Runable\EmailSender\EmailSender.exe").ToString();
