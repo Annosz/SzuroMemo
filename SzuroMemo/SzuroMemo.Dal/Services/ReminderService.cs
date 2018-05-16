@@ -19,7 +19,9 @@ namespace SzuroMemo.Dal.Services
 
         public ICollection<ScreeningHeaderDto> GetUrgentScreenings(int userId)
         {
-            var record = DbContext.MedicalRecord.Include(m => m.LastScreenings).First(m => m.UserId == userId);
+            var record = DbContext.MedicalRecord.Include(m => m.LastScreenings).FirstOrDefault(m => m.UserId == userId);
+            if (record == null)
+                return DbContext.Screening.Select(s => new ScreeningHeaderDto { Name = s.Name, Id = s.Id }).ToList();
 
             ICollection<ScreeningHeaderDto> screenings = new List<ScreeningHeaderDto>(); 
 
