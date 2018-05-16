@@ -7,7 +7,46 @@
 <h2>Adataim</h2>
 
 <form method="post">
-    
+    <h3>Személyes adatok</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Név</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Születési név</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Édesanyja születési neve</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Állandó lakcím</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Állampolgárság</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>TAJ kártya száma</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+
+    <br />
+    <h3>Orvosi adatok</h3>
     <div class="row">
         <div class="col-md-4">
             <label asp-for=@Model.MedicalRecord.Gender>Biológiai nem</label>
@@ -34,6 +73,124 @@
             <span asp-validation-for=@Model.MedicalRecord.Weight class="text-danger"></span>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Vércsoport</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+
+    <br />
+    <h3>Szülők betegségei</h3>
+    <div class="row">
+        <div class="col-md-2">
+            <h4>Anyai ágon</h4>
+        </div>
+        <div class="col-md-2">
+            <h4>Apai ágon</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Asztmás hajlam</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Asztmás hajlam</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Cukorbetegség</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Cukorbetegség</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Allergia</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Allergia</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Szívbetegség</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Szívbetegség</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Daganat</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Daganat</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Elhízás</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for=@Model.BoolData>Elhízás</label>
+            <input asp-for=@Model.BoolData class="form-control" />
+        </div>
+    </div>
+
+
+    <br />
+    <h3>Legutolsó szűrési időpontjaim</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Fogászati szűrés</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>HIV szűrés</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Nőgyógyászati rákszűrés</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Pajzsmirigyszűrés</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Szemészeti szűrővizsgálat</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for=@Model.StringData>Tüdőszűrés</label>
+            <input asp-for=@Model.StringData class="form-control" />
+        </div>
+    </div>
+
     <br />
     <div class="form-group">
         <button type="submit" class="btn btn-default">Változtatások mentése</button>

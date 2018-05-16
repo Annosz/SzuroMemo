@@ -4,5 +4,16 @@
     ViewData["Title"] = "Aktuális szűrések";
 }
 
+<h2>Esedékes szűrések</h2>
+<div class="alert alert-danger">
+    Az ön számára esedékesek a következő szűrések:
+    <ul>
+        <li>Szemészeti szűrővizsgálat</li>
+        <li>Tüdőszűrés</li>
+        <li>Fogászati szűrés</li>
+    </ul>
+</div>
+
+<br />
 <h2>Szűrések, amikre már jelentkeztem</h2>
 <vc:occasion-list occasions="Model.Occasions"></vc:occasion-list>

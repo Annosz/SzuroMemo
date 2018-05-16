@@ -27,6 +27,13 @@ namespace SzuroMemo.Web.Pages.Account.Personal
         private int? currentUserId;
         public int? CurrentUserId => User.Identity.IsAuthenticated ? (currentUserId ?? (currentUserId = int.Parse(UserManager.GetUserId(User)))) : null;
 
+
+        //For Demo
+        public string StringData = "";
+        public bool BoolData = false;
+
+
+
         [BindProperty]
         public MedicalRecordDto MedicalRecord { get; set; }
         
