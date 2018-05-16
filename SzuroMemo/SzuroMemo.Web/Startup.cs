@@ -47,6 +47,7 @@ namespace SzuroMemo.Web
             services.AddScoped<MedicalRecordService>();
             services.AddScoped<RegistrationService>();
             services.AddScoped<HospitalHeaderService>();
+            services.AddScoped<ReminderService>();
 
 
             services.AddIdentity<User, IdentityRole<int>>(config =>

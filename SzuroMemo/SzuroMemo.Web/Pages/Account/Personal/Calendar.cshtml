@@ -5,14 +5,18 @@
 }
 
 <h2>Esedékes szűrések</h2>
-<div class="alert alert-danger">
-    Az ön számára esedékesek a következő szűrések:
-    <ul>
-        <li>Szemészeti szűrővizsgálat</li>
-        <li>Tüdőszűrés</li>
-        <li>Fogászati szűrés</li>
-    </ul>
-</div>
+@if (Model.Screenings.Any())
+{
+    <div class="alert alert-danger">
+        Az ön számára esedékesek a következő szűrések:
+        <ul>
+            @foreach (var screening in Model.Screenings)
+            {
+                <li>@screening.Name</li>
+            }
+        </ul>
+    </div>
+}
 
 <br />
 <h2>Szűrések, amikre már jelentkeztem</h2>
